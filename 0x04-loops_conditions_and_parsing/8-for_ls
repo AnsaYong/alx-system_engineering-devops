@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# displays a list of files in the current directory
+
+for i in *; do
+	echo "$i";
+done
