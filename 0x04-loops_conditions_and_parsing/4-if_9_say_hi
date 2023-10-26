@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# while-loop: displays text 10 times, and Hi, using the while loop
+
+count=1
+word="Best School"
+
+while [ $count -le 10 ]; do
+	if [ $count -eq 9 ]; then
+		echo "$word"
+		echo "Hi"
+	else
+		echo "$word"
+	fi
+	count=$((count + 1))
+done
