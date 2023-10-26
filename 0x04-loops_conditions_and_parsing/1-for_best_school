@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+# for-loop: displays text 10 times using C style for command
+
+word="Best School"
+
+for (( i=0; i<10; i=i+1 )); do
+	echo "$word"
+done
