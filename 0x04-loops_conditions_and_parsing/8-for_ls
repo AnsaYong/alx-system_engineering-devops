@@ -2,5 +2,6 @@
 # displays a list of files in the current directory
 
 for i in *; do
-	echo "$i";
+	filename=$(echo "$i" | cut -d '-' -f 2-)
+	echo "$filename"
 done
