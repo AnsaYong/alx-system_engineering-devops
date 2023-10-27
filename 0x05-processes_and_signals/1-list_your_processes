@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
-# displays a list of currently running processes
+# displays a list of currently running processes with hierarchy and user-oriented format.
 
-ps -u
+# Use 'ps' with specific options to display processes.
+# -u: Show all processes.
+# --forest: Display process hierarchy.
+ps -u --forest
