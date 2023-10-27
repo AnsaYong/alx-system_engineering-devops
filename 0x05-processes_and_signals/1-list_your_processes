@@ -2,6 +2,6 @@
 # displays a list of currently running processes with hierarchy and user-oriented format.
 
 # Use 'ps' with specific options to display processes.
-# -u: Show all processes.
-# --forest: Display process hierarchy.
-ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --forest
+# u: Show all processes in a user-oriented format.
+# -H: Show process hierarchy (forest).
+ps -e u -H
