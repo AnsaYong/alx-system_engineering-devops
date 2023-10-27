@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# Stop the "7-highlander" process without using "kill".
+
+# Use 'pkill' to find and terminate the process based on the name.
+pkill -f "bash ./7-highlander"
