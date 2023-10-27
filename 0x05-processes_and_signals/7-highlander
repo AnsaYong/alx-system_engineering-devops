@@ -4,7 +4,7 @@
 
 # Function to handle SIGTERM signal
 function handle_sigterm {
-	echo "I am invinsible!!!"
+	echo "I am invincible!!!"
 }
 
 # Register the function to handle SIGTERM signal
