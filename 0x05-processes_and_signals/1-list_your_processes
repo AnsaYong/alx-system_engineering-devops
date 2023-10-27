@@ -4,4 +4,4 @@
 # Use 'ps' with specific options to display processes.
 # -u: Show all processes.
 # --forest: Display process hierarchy.
-ps -u --forest
+ps -e -o user,pid,%cpu,%mem,vsz,rss,tty,stat,start,time,command --forest
