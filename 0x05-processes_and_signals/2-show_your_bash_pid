@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+# displays lines containing bash from a list of currently running processes.
+# shellcheck disable=SC2009
+
+# Use 'ps' with specific options to display processes.
+# -e: Select all processes -for all users, including those which might not have a TTY
+# u: Show all processes in a user-oriented format.
+# -H: Show process hierarchy (forest).
+# awk: search for lines that match the regular expression /bash/
+
+ps -e u -H | awk '/bash/'
