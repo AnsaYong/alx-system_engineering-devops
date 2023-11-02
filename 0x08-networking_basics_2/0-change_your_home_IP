@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Changes the IP addresses of localhost and facebook.com
+
+# Add custom DNS resolutions to the /etc/hosts file
+
+cp /etc/hosts ~/hosts.new
+
+# Modify the /etc/hosts file to set localhost to 127.0.0.2
+
+LOCALHOST_IP="127.0.0.2"
+FACEBOOK_IP="8.8.8.8"
+
+# Create a temporary file
+TMP_FILE=$(mktemp)
+
+# Use grep with word boundaries to remove lines containing "127.0.0.1...localhost"
+grep -vE "^127\.0\.0\.1[[:space:]]+localhost" ~/hosts.new > "$TMP_FILE"
+
+# Overwrite the original file with the modified content
+mv "$TMP_FILE" ~/hosts.new
+
+# Add or modify entries in /etc/hosts
+echo -e "$LOCALHOST_IP\tlocalhost" >> ~/hosts.new
+echo -e "$FACEBOOK_IP\tfacebook.com" >> ~/hosts.new
+
+cp -f ~/hosts.new /etc/hosts
