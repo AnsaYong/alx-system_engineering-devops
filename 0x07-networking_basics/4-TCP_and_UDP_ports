@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+# Displays listening all listening ports on a cmputer
+
+# netstat: Use this command to display ALL network connections, routing tables, interface statistics, etc
+# -l: Use this flag to show only the listening sockets
+# -p: Use this flag to Show the PID and name of the program to which each socket belongs (requires sudo).
+netstat -l -p
