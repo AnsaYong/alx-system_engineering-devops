@@ -2,10 +2,11 @@
 # Listens on port 98 on localhost
 
 # Specify the port to listen on
-port=98
+#port=98
 
 # Use netcat (nc) to listen on the specified port
 # -l: Listen for an incoming connection rather than initiating a connection to a remote host
 # -p: Specify the source port nc should use, subject to privilege restrictions and availability
 # -k: When a connection is completed, listen for another one.  Requires -l.
-nc -l localhost $port
+#nc -l localhost $port
+nc -l localhost 98
