@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 
 # Set server details - private key location, username and hostname/IP
-remote_server=54.160.106.225
-username=ubuntu
-private_key_path=~/.ssh/school
+remote_server="54.160.106.225"
+username="ubuntu"
+private_key_path="~/.ssh/school"
 
 # SSH connection command
 ssh_command="ssh -i $private_key_path $username@$remote_server"
