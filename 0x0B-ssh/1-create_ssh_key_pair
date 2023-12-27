@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# This script generates an RSA key pair, specifying the fiile name,
+# bits and passphrase
+
+# -t: specifies the type of key to create 
+# -b: specifies the number of bits in the key
+# -f: specifies the filename of the generated key
+# -N: provdes a passphrase for an extra layer of security
+
+ssh-keygen -t rsa -b 4096 -f school -N betty
