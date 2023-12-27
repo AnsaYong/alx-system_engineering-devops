@@ -2,6 +2,6 @@
 
 
 exec { 'kill_killmenow_process':
-  command     => '/usr/bin/pkill -f "killmenow"',
-  refreshonly => true,
+  path     => '/usr/bin/'
+  command  => 'pkill -f killmenow',
 }
