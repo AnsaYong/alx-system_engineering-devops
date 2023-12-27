@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
+# This script uses ssh to connect to the specifed remote server
+# usng a private key in ~/.ssh/school with the user ubuntu
 
-# Set server details - private key location, username and hostname/IP
+# Set server details - p_key location, username and hostname/IP
 remote_server="54.160.106.225"
 username="ubuntu"
 private_key_path="~/.ssh/school"
