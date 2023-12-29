@@ -8,14 +8,13 @@
 file_line { 'Turn off password authentication':
   ensure => 'present',
   path   => '/etc/ssh/ssh_config',
-  line   => 'PasswordAuthentication no',  # replaces the line in the file that matches the pattern below
-  match  => '^#?\s*PasswordAuthentication\s+.*$', # pattern to find in the file
+  line   => '    PasswordAuthentication no',  # replaces the line in the file that matches the pattern below
+  match  => '#    PasswordAuthentication yes', # line in the file to replace
 }
 
 # specify the identify file - contains the RSA private key
 file_line { 'Declare identity file':
   ensure => 'present',
   path   => '/etc/ssh/ssh_config',
-  line   => 'IdentityFile ~/.ssh/school',
-  match  => '^#?\s*IdentityFile\s+.*$',
+  line   => '    IdentityFile ~/.ssh/school', # add line that contains the RSA private key
 }
