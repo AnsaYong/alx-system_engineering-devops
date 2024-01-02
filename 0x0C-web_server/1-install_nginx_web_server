@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# This script automates the process of installing the `nginx web server`
+# on a remote server; Nginx hould be listening on port 80
+
+# -y: Yes - to all prompts so that you won't get any prompts during installation
+
+sudo apt-get -y update				# update the package index
+sudo apt-get -y install nginx		# Install Nginx
+sudo ufw allow "Nginx HTTTP"		# Allow incoming HTTP traffic (port 80) through
+									# the Uncomplicated Firewall (UFW) by enabling
+									# the predefined "Nginx HTTP" rule.
+sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
+sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo service nginx resart		# Restart the Nginx service to apply changes made during installation
+
+# Check if Nginx is NOT listening on port 80
+if ! sudo lsof -i :80 >/dev/null 2>&1; then
+	exit 1
+fi
