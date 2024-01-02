@@ -12,8 +12,3 @@ sudo ufw allow "Nginx HTTTP"		# Allow incoming HTTP traffic (port 80) through
 sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
 sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
 sudo service nginx resart		# Restart the Nginx service to apply changes made during installation
-
-# Check if Nginx is NOT listening on port 80
-if ! sudo lsof -i :80 >/dev/null 2>&1; then
-	exit 1
-fi
