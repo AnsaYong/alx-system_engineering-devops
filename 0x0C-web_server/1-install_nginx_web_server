@@ -4,10 +4,10 @@
 
 # -y: Yes - to all prompts so that you won't get any prompts during installation
 
-sudo apt-get update					# update the package index
+sudo apt-get -y update				# update the package index
 sudo apt-get -y install nginx		# Install Nginx
 sudo ufw allow "Nginx HTTP"			# Allow incoming HTTP traffic (port 80) through
-									# the Uncomplicated Firewall (UFW) by enabling
+									# the Uncomplicated Firewall (ufw) by enabling
 									# the predefined "Nginx HTTP" rule.
 sudo ufw --force enable
 #sudo chown -R $USER:$USER /var/www/html/index.nginx-debian.html
