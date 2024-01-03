@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# This script configures an Nginx server so that `/redirect_me` is redirecting to another page
+
+# Update package list
+sudo apt-get -y update
+
+# Install the Nginx web server
+sudo apt-get -y install nginx
+
+# Configure Uncomplicated firewall (UFW)
+sudo ufw allow 22	# incoming ssh port
+sudo ufw allow 80	# incoming HTTP port
+sudo ufw enable
+
+# Create default HTML page
+echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
+
+# Configure Nginx for URL Rewriting (301 Moved Permanently)
+sudo sed -i '/listen 80 default_server/a rewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;' /etc/nginx/sites-available/default
+
+# Restart Nginx
+sudo service nginx stop
+sudo service nginx start
