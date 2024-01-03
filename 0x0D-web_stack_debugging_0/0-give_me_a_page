@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Fixes an error message returned in docker, instead of a page
+
+sudo service apache2 start
