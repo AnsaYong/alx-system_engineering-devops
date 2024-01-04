@@ -7,8 +7,7 @@
 sudo apt-get -y update				# update the package index
 sudo apt-get -y install nginx		# Install Nginx
 sudo ufw allow "Nginx HTTP"			# Allow incoming HTTP traffic (port 80) through the Uncomplicated Firewall (ufw) by enabling the predefined "Nginx HTTP" rule.
-sudo ufw --force enable
-echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html > /dev/null
+echo "Hello World!" > /var/www/html/index.nginx-debian.html > /dev/null
 
 # Restart the Nginx service without using systemctl
 sudo service nginx stop

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Transfers a file from our client to a server
 
-# Check iif the number of parameters is less than 4
+# Check if the number of parameters is less than 4
 if [ "$#" -lt 4 ]; then
 	echo "Usage: 0-transfer_file PATH_TO_FILE IP USERNAME PATH_TO_SSH_KEY"
 	exit 1
@@ -18,7 +18,7 @@ scp -o StrictHostKeyChecking=no -i "$ssh_key_path" "$file_path" "$username@$serv
 
 # Check the exit status of the scp command
 if [ $? -eq 0 ]; then
-	echo "File transer successful."
+	echo "File transfer successful."
 else
-	echo "File transer failed."
+	echo "File transfer failed."
 fi
