@@ -15,7 +15,7 @@ sudo apt-get -y install nginx		# Install Nginx
 sudo ufw allow "Nginx HTTP"			# Allow incoming HTTP traffic (port 80) through the Uncomplicated Firewall (ufw) by enabling the predefined "Nginx HTTP" rule.
 
 # Create a custom index file with "Hello World!"
-sudo echo "Hello World!" > /var/www/html/index.nginx-debian.html
+sudo echo "Hello World!" | sudo tee /var/www/html/index.nginx-debian.html
 
 # Configure Nginx for URL Rewriting (301 Moved Permanently)
 sudo sed -i "/server_name _;/a \
