@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # This script automates the process of installing the `nginx web server`
-# on a remote server; Nginx hould be listening on port 80
+# on a remote server - Nginx listens on port 80
 
 # -y: Yes - to all prompts so that you won't get any prompts during installation
 
