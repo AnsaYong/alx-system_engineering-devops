@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# This script installs and configures HAproxy on the lb-01 load balancer/server
+
+# Update and install HAProxy
+sudo apt update
+sudo apt install -y haproxy
+
+# Set server configuration
+echo -e "\nfrontend http\n\tbind *:80\n\tmode http\n\tdefault_backend web-backend\n\nbackend web-backend\n\tbalance roundrobin\n\tserver 281643-web-01 34.239.107.76:80 check\n\tserver 281643-web-02 100.26.254.126:80 check" >> /etc/haproxy/haproxy.cfg
+
+# Restart load balancer/server
+sudo service haproxy restart

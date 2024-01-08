@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 # Configures an Nginx server so that its HTTP response contains a custom header
 
 # Install NGINX if it is not installed
@@ -13,7 +13,7 @@ sudo sed -i "20i\        add_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.con
 sudo service nginx restart
 
 # Use curl to get the headers and grep for X-Served-By
-output=$(curl -sI http://localhost | grep X-Served-By)
+#output=$(curl -sI http://localhost | grep X-Served-By)
 
 # Print the X-Served-By header
-echo "$output"
+#echo "$output"
