@@ -11,3 +11,9 @@ sudo sed -i "20i\        add_header X-Served-By $HOSTNAME;" /etc/nginx/nginx.con
 
 # Reload NGINX to apply the changes
 sudo service nginx restart
+
+# Use curl to get the headers and grep for X-Served-By
+output=$(curl -sI http://localhost | grep X-Served-By)
+
+# Print the X-Served-By header
+echo "$output"
