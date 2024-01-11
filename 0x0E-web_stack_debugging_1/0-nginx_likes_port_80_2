@@ -1,0 +1,24 @@
+#!/bin/bash
+
+# Install netstat
+sudo apt-get update
+sudo apt-get install -y net-tools
+
+# Check Nginx process on port 80
+if netstat -tuln | grep -q ":80 "; then
+    echo "Nginx is already listening on port 80"
+else
+    # Check Nginx configuration
+    nginx_config="/etc/nginx/nginx.conf"
+    if grep -q "listen 80;" $nginx_config; then
+        echo "Nginx configuration is already set to listen on port 80"
+    else
+        # Update Nginx configuration
+        sudo sed -i 's/\(listen\s*[^;]*80;\)/\1/' $nginx_config
+        echo "Nginx configuration updated to listen on port 80"
+    fi
+
+    # Restart Nginx
+    sudo service nginx restart
+    echo "Nginx restarted"
+fi
