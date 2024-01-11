@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+# Function to check if the page contains "Holberton School"
+check_holberton_content() {
+    local content=$(curl -s http://www.$domain)
+    if [[ $content == *"Holberton School"* ]]; then
+        echo "Content verification: Success"
+    else
+        echo "Content verification: Failed"
+        exit 1
+    fi
+}
+
+# Function to install Certbot
+install_certbot() {
+    sudo apt update
+    sudo apt install certbot -y
+}
+
+# Function to obtain SSL certificate
+obtain_certificate() {
+    sudo certbot certonly --standalone -d www.$domain
+}
+
+# Function to configure HAProxy
+configure_haproxy() {
+    cat <<EOL | sudo tee /etc/haproxy/haproxy.cfg
+frontend www-https
+    bind *:443 ssl crt /etc/letsencrypt/live/www.$domain/fullchain.pem
+    reqadd X-Forwarded-Proto:\ https
+    default_backend www-backend
+
+backend www-backend
+    server your-web-server 127.0.0.1:80
+EOL
+
+    sudo service haproxy reload
+}
+
+# Check if the script is run with the correct number of arguments
+if [ "$#" -ne 1 ]; then
+    echo "Usage: $0 <domain>"
+    exit 1
+fi
+
+# Parse command-line argument
+domain=$1
+
+# Execute the functions
+install_certbot
+obtain_certificate
+configure_haproxy
+check_holberton_content
+
+echo "HAProxy is now configured to handle encrypted traffic for www.$domain"
