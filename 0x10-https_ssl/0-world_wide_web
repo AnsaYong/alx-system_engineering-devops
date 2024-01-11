@@ -1,0 +1,40 @@
+#!/usr/bin/env bash
+# This script provides a function that displays information about subdomains
+
+display_subdomain_info() {
+    domain=$1
+    subdomain=$2
+
+    if [ -z "$subdomain" ]; then
+        subdomains=("www" "lb-01" "web-01" "web-02")
+    else
+        subdomains=("$subdomain")
+    fi
+
+    for sub in "${subdomains[@]}"; do
+        # Using awk to extract record type and destination
+        #record_type=$(dig +short -t ANY $domain | awk '{ if (NF >= 4) print $4 }')
+		#record_type=$(dig +short -t ANY $domain | awk '/^;; ANSWER SECTION:$/ { getline; print $4 }')
+		#record_type=$(dig +short "$sub.$domain" | grep -A1 'ANSWER SECTION:' | tail -1 | awk -v s="$subdomain" 'BEGIN { FS = " " } ; { print $4 }')
+		#record_type=$(dig +short "$sub.$domain" | grep -A1 'ANSWER SECTION:' | tail -1 | awk '/IN/ { print $4 }')
+		destination=$(dig +short "$sub"."$domain")
+
+        if [ -n "$destination" ]; then
+            #echo "The subdomain $sub is a $record_type record and points to $destination"
+			echo "The subdomain $sub is a A record and points to $destination"
+        fi
+    done
+}
+
+# Check if the number of arguments is correct
+if [ "$#" -lt 1 ] || [ "$#" -gt 2 ]; then
+    echo "Usage: $0 <domain> [subdomain]"
+    exit 1
+fi
+
+# Parse command-line arguments
+domain=$1
+subdomain=$2
+
+# Display subdomain information
+display_subdomain_info "$domain" "$subdomain"
