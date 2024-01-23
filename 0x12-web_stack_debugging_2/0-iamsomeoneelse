@@ -9,7 +9,7 @@ if [ $# -eq 0 ]; then
 fi
 
 # Assign the provided username to a variable
-username=$1
+username="$1"
 
 # Run the `whoami` command under the specified user
-sudo -u $username whoami
+sudo -u "$username" whoami
