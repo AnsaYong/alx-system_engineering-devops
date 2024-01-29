@@ -52,7 +52,7 @@ def get_employee_todo_progress(employee_id):
         for data_dict in todos_data:
             if (data_dict.get('userId') == employee_id and
                     data_dict.get('completed')):
-                print("\t" + data_dict.get('title'))
+                print("\t" + " " + data_dict.get('title'))
 
 
 if __name__ == "__main__":
