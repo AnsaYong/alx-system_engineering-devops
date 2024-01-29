@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-"""
-For a given employee ID, sends a request that returns
+"""For a given employee ID, sends a request that returns
 information about his/her TODO list progress.
 """
 import requests
