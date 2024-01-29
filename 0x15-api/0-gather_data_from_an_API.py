@@ -26,8 +26,8 @@ def get_employee_todo_progress(employee_id):
     todos_response = requests.get(todos_url)
 
     # Check if both requests were successful (status code 200)
-    if employee_response.status_code == 200 \
-    and todos_response.status_code == 200:
+    if (employee_response.status_code == 200 and
+            todos_response.status_code == 200):
         # Parse JSON data for employee and todos
         employee_data = employee_response.json()
         todos_data = todos_response.json()
@@ -50,8 +50,8 @@ def get_employee_todo_progress(employee_id):
               .format(employee_name, completed_tasks, all_tasks))
 
         for data_dict in todos_data:
-            if data_dict.get('userId') == employee_id \
-            and data_dict.get('completed'):
+            if (data_dict.get('userId') == employee_id and
+                    data_dict.get('completed')):
                 print("\t", end=" ")
                 print(data_dict.get('title'))
 
