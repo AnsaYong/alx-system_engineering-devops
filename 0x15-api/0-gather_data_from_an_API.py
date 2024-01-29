@@ -1,63 +1,57 @@
 #!/usr/bin/python3
-"""For a given employee ID, sends a request that returns
-information about his/her TODO list progress.
+"""
+Return information for a given employee ID.
+
+About his/her TODO list progress from a REST API.
 """
 import requests
-import sys
+from sys import argv
 
 
-def get_employee_todo_progress(employee_id):
+def fetch_data(employee_id):
     """
-    Describes the TODO progress of the specified
-    employee. It uses data optained from a url
-    through a REST API
+    Fetches information about a given employee's TODO list progress
+    and prints the details to the console.
 
-    Argument:
-        employee_id: the emloyee ID
+    Args:
+        employee_id (int): The ID of the employee.
+
     Returns:
-        Text to stdout
+        None
     """
-    # URLs for employee and todos data
+    # Construct URLs for employee and todos data
     employee_url = f"https://jsonplaceholder.typicode.com/users/{employee_id}"
-    todos_url = "https://jsonplaceholder.typicode.com/todos"
+    todos_url = \
+        f"https://jsonplaceholder.typicode.com/users/{employee_id}/todos"
 
-    # Make a GET request to the specified URL
+    # Make a GET request to the specified URL for employee data
     employee_response = requests.get(employee_url)
+    employee_data = employee_response.json()
+
+    # Extract employee name
+    employee_name = employee_data.get('name')
+
+    # Make a GET request to the specified URL for todos data
     todos_response = requests.get(todos_url)
+    todos_data = todos_response.json()
 
-    # Check if both requests were successful (status code 200)
-    if (employee_response.status_code == 200 and
-            todos_response.status_code == 200):
-        # Parse JSON data for employee and todos
-        employee_data = employee_response.json()
-        todos_data = todos_response.json()
+    # Initialize counters for completed tasks and all tasks
+    completed_tasks = sum(1 for todo in todos_data if todo["completed"])
+    all_tasks = len(todos_data)
 
-        # Extract employee name
-        employee_name = employee_data.get('name')
+    # Print employee progress information
+    info = f"Employee {employee_name} is done with \
+tasks({completed_tasks}/{all_tasks}):"
+    for todo in todos_data:
+        if todo["completed"]:
+            info += f"\n\t{todo['title']}"
 
-        # Initialize counters for completed tasks and all tasks
-        completed_tasks = 0
-        all_tasks = 0
-
-        # Handle the returned todo data
-        for data_dict in todos_data:
-            if data_dict.get('userId') == employee_id:
-                all_tasks += 1
-                if data_dict.get('completed'):
-                    completed_tasks += 1
-
-        print("Employee {} is done with tasks({}/{}):"
-              .format(employee_name, completed_tasks, all_tasks))
-
-        for data_dict in todos_data:
-            if (data_dict.get('userId') == employee_id and
-                    data_dict.get('completed')):
-                print("\t" + " " + data_dict.get('title'))
+    print(info)
 
 
 if __name__ == "__main__":
     # Get the employee ID from the command line argument
-    employee_id = int(sys.argv[1])
+    employee_id = int(argv[1])
 
-    # Call the function to get todo list progress for the specified employee
-    get_employee_todo_progress(employee_id)
+    # Call the function to fetch todo list progress for the specified employee
+    fetch_data(employee_id)
