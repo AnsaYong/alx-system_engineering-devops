@@ -26,7 +26,7 @@ if __name__ == "__main__":
     todo_list = []
 
     for x in todos:
-        todo_list.append("\t {}".format(x["title"]))
+        todo_list.append("     {}".format(x["title"]))
     print("Employee {} is done with tasks({}/{}):"
           .format(name, len(todos), todo))
     for y in todo_list:
