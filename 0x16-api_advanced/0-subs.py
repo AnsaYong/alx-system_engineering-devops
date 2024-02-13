@@ -3,7 +3,6 @@
 the Reddit API.
 """
 import requests
-import sys
 
 
 def number_of_subscribers(subreddit):
@@ -13,13 +12,14 @@ def number_of_subscribers(subreddit):
     Arguments:
         subreddit: the subreddit to be queried
     Returns:
-        the number of subscribers for the given subreddit
+        the number of subscribers for the given subreddit, if
+        they eist, 0 otherwise
     """
-    url = f"https://www.reddit.com/r/{subreddit}/about.json"
+    url = f"http://www.reddit.com/r/{subreddit}/about.json"
     headers = {
-        'User-Agent': 'Custom User Agent'
+        'User-Agent': 'Abot'
     }
-    response = requests.get(url, headers=headers, allow_redirects=False)
+    response = requests.get(url, headers=headers)
 
     if response.status_code == 200:
         data = response.json()
